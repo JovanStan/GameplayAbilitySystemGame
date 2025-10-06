@@ -2,6 +2,7 @@
 #include "Characters/AuraBaseCharacter.h"
 
 #include "AbilitySystemComponent.h"
+#include "AbilitySystem/AuraAbilitySystemComponent.h"
 
 AAuraBaseCharacter::AAuraBaseCharacter()
 {
@@ -33,6 +34,11 @@ void AAuraBaseCharacter::InitAbilityActorInfo()
 	
 }
 
+FVector AAuraBaseCharacter::GetCombatSocketLocation()
+{
+	return Weapon->GetSocketLocation(WeaponTipSocketName);
+}
+
 void AAuraBaseCharacter::ApplyEffectToSelf(const TSubclassOf<UGameplayEffect> GameplayEffectClass, float Level) const
 {
 	if (GetAbilitySystemComponent() && GameplayEffectClass)
@@ -49,6 +55,14 @@ void AAuraBaseCharacter::InitializeDefaultAttributes() const
 	ApplyEffectToSelf(DefaultPrimaryAttributes, 1);
 	ApplyEffectToSelf(DefaultSecondaryAttributes, 1);
 	ApplyEffectToSelf(DefaultVitalAttributes, 1);
+}
+
+void AAuraBaseCharacter::AddCharacterAbilities()
+{
+	UAuraAbilitySystemComponent* AuraAbilitySystemComponent = Cast<UAuraAbilitySystemComponent>(AbilitySystemComponent);
+	if (!HasAuthority()) return;
+
+	AuraAbilitySystemComponent->AddCharacterAbilities(StartupAbilities);
 }
 
 

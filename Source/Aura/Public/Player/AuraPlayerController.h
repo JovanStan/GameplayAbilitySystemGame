@@ -5,6 +5,10 @@
 #include "GameFramework/PlayerController.h"
 #include "AuraPlayerController.generated.h"
 
+class USplineComponent;
+class UAuraAbilitySystemComponent;
+struct FGameplayTag;
+class UAuraInputConfig;
 class IEnemyInterface;
 struct FInputActionValue;
 class UInputMappingContext;
@@ -19,6 +23,8 @@ public:
 	AAuraPlayerController();
 	virtual void Tick(float DeltaSeconds) override;
 
+	void AutoRun();
+	
 protected:
 	virtual void BeginPlay() override;
 	virtual void SetupInputComponent() override;
@@ -36,4 +42,27 @@ private:
 	
 	TScriptInterface<IEnemyInterface> LastActor;
 	TScriptInterface<IEnemyInterface> ThisActor;
+	FHitResult HitResult;
+
+	void AbilityInputTagPressed(FGameplayTag InputTag);
+	void AbilityInputTagReleased(FGameplayTag InputTag);
+	void AbilityInputTagHeld(FGameplayTag InputTag);
+
+	UPROPERTY(EditDefaultsOnly)
+	TObjectPtr<UAuraInputConfig> InputConfig;
+
+	UPROPERTY()
+	TObjectPtr<UAuraAbilitySystemComponent> AuraAbilitySystemComponent;
+
+	UAuraAbilitySystemComponent* GetAuraAbilitySystemComponent();
+
+	FVector CachedDestination = FVector::Zero();
+	float FollowTime = 0.f;
+	float ShortPressThreshold = .5f;
+	bool bAutoRunning = false;
+	bool bTargeting = false;
+	float AutoRunAcceptanceRadius = 50.f;
+
+	UPROPERTY(VisibleAnywhere)
+	TObjectPtr<USplineComponent> Spline;
 };
