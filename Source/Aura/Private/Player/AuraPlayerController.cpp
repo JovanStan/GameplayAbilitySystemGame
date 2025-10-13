@@ -115,7 +115,8 @@ void AAuraPlayerController::CursorTrace()
 
 void AAuraPlayerController::AbilityInputTagPressed(FGameplayTag InputTag)
 {
-	if (InputTag.MatchesTagExact(FGameplayTag::RequestGameplayTag("InputTag.LMB")))
+	
+	if (InputTag.MatchesTagExact(FAuraGameplayTags::Get().InputTag_LMB))
 	{
 		bTargeting = ThisActor ? true : false;
 		bAutoRunning = false;
@@ -124,8 +125,7 @@ void AAuraPlayerController::AbilityInputTagPressed(FGameplayTag InputTag)
 
 void AAuraPlayerController::AbilityInputTagReleased(FGameplayTag InputTag)
 {
-	//Ovde vrati ! kada zavrsim prethodnu sekciju
-	if(!InputTag.MatchesTagExact(FGameplayTag::RequestGameplayTag("InputTag.LMB")))
+	if(!InputTag.MatchesTagExact(FAuraGameplayTags::Get().InputTag_LMB))
     {
     	if (GetAuraAbilitySystemComponent())
     	{
@@ -165,8 +165,7 @@ void AAuraPlayerController::AbilityInputTagReleased(FGameplayTag InputTag)
 
 void AAuraPlayerController::AbilityInputTagHeld(FGameplayTag InputTag)
 {
-	//Ovde vrati ! kada zavrsim prethodnu sekciju
-	if(!InputTag.MatchesTagExact(FGameplayTag::RequestGameplayTag("InputTag.LMB")))
+	if(!InputTag.MatchesTagExact(FAuraGameplayTags::Get().InputTag_LMB))
 	{
 		if (GetAuraAbilitySystemComponent())
 		{
