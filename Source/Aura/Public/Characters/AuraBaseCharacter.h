@@ -21,7 +21,12 @@ public:
 	AAuraBaseCharacter();
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 	UAttributeSet* GetAttributeSet() const;
+	
+	virtual UAnimMontage* GetHitReactMontage_Implementation() override;
+	virtual void Die() override;
 
+	UFUNCTION(NetMulticast, Reliable)
+	virtual void MultiCastHandleDeath();
 
 protected:
 	virtual void BeginPlay() override;
@@ -55,5 +60,7 @@ protected:
 private:
 	UPROPERTY(EditAnywhere)
 	TArray<TSubclassOf<UGameplayAbility>> StartupAbilities;
-	
+
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UAnimMontage> HitReactMontage;
 };
