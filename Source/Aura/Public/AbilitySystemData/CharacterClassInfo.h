@@ -41,5 +41,8 @@ public:
 	UPROPERTY(EditDefaultsOnly)
 	TArray<TSubclassOf<UGameplayAbility>> Abilities;
 
+	UPROPERTY(EditDefaultsOnly)
+	TObjectPtr<UCurveTable> DamageCalculationCoefficient;
+	
 	FCharacterClassDefaultInfo GetClassDefaultInfo(ECharacterClass CharacterClass) const;
 };

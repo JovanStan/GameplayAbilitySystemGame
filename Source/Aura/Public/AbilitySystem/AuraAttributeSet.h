@@ -52,6 +52,7 @@ public:
 	virtual void GetLifetimeReplicatedProps(TArray<class FLifetimeProperty>& OutLifetimeProps) const override;
 
 	virtual void PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue) override;
+	void ShowFloatingText(FEffectProperties Props, float LocalIncomingDamage);
 	virtual void PostGameplayEffectExecute(const struct FGameplayEffectModCallbackData& Data) override;
 
 	TMap<FGameplayTag, FAttributeFuncPtr> TagsToAttributes;

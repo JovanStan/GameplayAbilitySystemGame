@@ -6,6 +6,7 @@
 #include "AuraAbilitySystemLibrary.generated.h"
 
 
+class UCharacterClassInfo;
 class UAbilitySystemComponent;
 enum class ECharacterClass : uint8;
 class UAttributeMenuWidgetController;
@@ -29,4 +30,7 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	static void GiveStartupAbilities(const UObject* WorldContextObject, UAbilitySystemComponent* AbilitySystemComponent);
+
+	UFUNCTION(BlueprintCallable)
+	static UCharacterClassInfo* GetCharacterClassInfo(const UObject* WorldContextObject);
 };
