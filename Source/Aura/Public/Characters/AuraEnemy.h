@@ -25,8 +25,12 @@ public:
 	virtual void HighlightActor() override;
 	virtual void UnHighlightActor() override;
 
+	/** Combat Interface */
 	virtual int32 GetPlayerLevel() override;
 	virtual void Die() override;
+	virtual void SetCombatTarget_Implementation(AActor* InCombatTarget) override;
+	virtual AActor* GetCombatTarget_Implementation() const override;
+	/** Combat Interface */
 
 	UPROPERTY(BlueprintAssignable)
 	FOnAttributeChangedSignature OnHealthChanged;
@@ -37,6 +41,9 @@ public:
 
 	UPROPERTY(BlueprintReadOnly)
 	bool bHitReacting = false;
+	
+	UPROPERTY(BlueprintReadWrite)
+	TObjectPtr<AActor> CombatTarget;
 	
 protected:
 	virtual void BeginPlay() override;
