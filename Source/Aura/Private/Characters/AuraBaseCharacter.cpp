@@ -67,7 +67,7 @@ void AAuraBaseCharacter::InitAbilityActorInfo()
 	
 }
 
-FVector AAuraBaseCharacter::GetCombatSocketLocation()
+FVector AAuraBaseCharacter::GetCombatSocketLocation_Implementation()
 {
 	return Weapon->GetSocketLocation(WeaponTipSocketName);
 }
