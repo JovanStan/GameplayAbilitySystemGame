@@ -9,7 +9,6 @@
 #include "GameplayEffectExtension.h"
 #include "GameFramework/Character.h"
 #include "Interaction/CombatInterface.h"
-#include "Kismet/GameplayStatics.h"
 #include "Player/AuraPlayerController.h"
 
 UAuraAttributeSet::UAuraAttributeSet()
@@ -133,6 +132,11 @@ void UAuraAttributeSet::ShowFloatingText(FEffectProperties Props, const float Lo
 	if (Props.SourceCharacter != Props.TargetCharacter)
 	{
 		if (AAuraPlayerController* AuraPlayerController = Cast<AAuraPlayerController>(Props.SourceCharacter->Controller))
+		{
+			AuraPlayerController->ShowDamageNumber(LocalIncomingDamage, Props.TargetCharacter);
+			return;
+		}
+		if (AAuraPlayerController* AuraPlayerController = Cast<AAuraPlayerController>(Props.TargetCharacter->Controller))
 		{
 			AuraPlayerController->ShowDamageNumber(LocalIncomingDamage, Props.TargetCharacter);
 		}

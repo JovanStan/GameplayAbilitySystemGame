@@ -33,4 +33,10 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	static UCharacterClassInfo* GetCharacterClassInfo(const UObject* WorldContextObject);
+
+	UFUNCTION(BlueprintCallable)
+	static void GetLivePlayerWithinRadius(const UObject* WorldContextObject, TArray<AActor*>& OutOverlappingActors, const TArray<AActor*>& ActorsToIgnore, float Radius, const FVector& SphereLocation);
+
+	UFUNCTION(BlueprintCallable, BlueprintPure)
+	static bool IsNotFriend(AActor* FirstActor, AActor* SecondActor);
 };

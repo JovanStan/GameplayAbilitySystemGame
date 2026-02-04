@@ -19,11 +19,21 @@ class AURA_API AAuraBaseCharacter : public ACharacter, public IAbilitySystemInte
 
 public:
 	AAuraBaseCharacter();
+	
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
 	UAttributeSet* GetAttributeSet() const;
-	
+
+	/** Combat Interface */
+	virtual FVector GetCombatSocketLocation_Implementation(const FGameplayTag& MontageTag) override;
+	virtual bool IsDead_Implementation() const override;
+	virtual AActor* GetAvatar_Implementation() override;
 	virtual UAnimMontage* GetHitReactMontage_Implementation() override;
 	virtual void Die() override;
+	virtual TArray<FTaggedMontage> GetAttackMontages_Implementation() override;
+
+	UPROPERTY(EditAnywhere)
+	TArray<FTaggedMontage> AttackMontages;
+	/** Combat Interface */
 
 	UFUNCTION(NetMulticast, Reliable)
 	virtual void MultiCastHandleDeath();
@@ -37,8 +47,10 @@ protected:
 
 	UPROPERTY(EditAnywhere, Category= "Combat")
 	FName WeaponTipSocketName;
-
-	virtual FVector GetCombatSocketLocation_Implementation() override;
+	UPROPERTY(EditAnywhere, Category= "Combat")
+	FName LeftHandSocketName;
+	UPROPERTY(EditAnywhere, Category= "Combat")
+	FName RightHandSocketName;
 
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
@@ -56,6 +68,8 @@ protected:
 	virtual void InitializeDefaultAttributes() const;
 
 	void AddCharacterAbilities();
+
+	bool bDead = false;
 	
 	//Dissolve Effects
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
