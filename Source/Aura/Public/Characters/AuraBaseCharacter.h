@@ -96,4 +96,7 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UAnimMontage> HitReactMontage;
+
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<USoundBase> DeathSound;
 };
