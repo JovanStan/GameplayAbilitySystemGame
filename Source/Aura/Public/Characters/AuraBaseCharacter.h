@@ -54,6 +54,8 @@ protected:
 	FName LeftHandSocketName;
 	UPROPERTY(EditAnywhere, Category= "Combat")
 	FName RightHandSocketName;
+	UPROPERTY(EditAnywhere, Category= "Combat")
+	FName TailSocketName;
 
 	UPROPERTY(VisibleAnywhere)
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
