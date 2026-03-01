@@ -1,6 +1,7 @@
 
 #include "AbilitySystem/Abilities/SummonAbility.h"
 
+
 TArray<FVector> USummonAbility::GetSpawnLocations()
 {
 	const FVector Forward = GetAvatarActorFromActorInfo()->GetActorForwardVector();
