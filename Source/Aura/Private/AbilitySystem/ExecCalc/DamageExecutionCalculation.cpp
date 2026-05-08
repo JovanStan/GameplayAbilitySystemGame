@@ -8,6 +8,8 @@
 #include "AbilitySystemData/CharacterClassInfo.h"
 #include "Interaction/CombatInterface.h"
 
+class UAbilitySystemComponent;
+
 struct AuraDamageStatics
 {
 	DECLARE_ATTRIBUTE_CAPTUREDEF(Armor);

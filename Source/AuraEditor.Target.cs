@@ -7,9 +7,10 @@ public class AuraEditorTarget : TargetRules
 {
 	public AuraEditorTarget(TargetInfo Target) : base(Target)
 	{
-		Type = TargetType.Editor;
-		DefaultBuildSettings = BuildSettingsVersion.V5;
-
-		ExtraModuleNames.AddRange( new string[] { "Aura" } );
+		Type = TargetType.Game;
+		DefaultBuildSettings = BuildSettingsVersion.V6;
+		IncludeOrderVersion = EngineIncludeOrderVersion.Unreal5_7;
+        
+		ExtraModuleNames.AddRange(new string[] { "Aura" });
 	}
 }
